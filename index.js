@@ -30,7 +30,7 @@ alexaApp.launch(function(request, response) {
   response.say("You launched the app!");
 });
 
-alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
+//alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
 alexaApp.intent("PlanMyTrip", {
     "slots": [
