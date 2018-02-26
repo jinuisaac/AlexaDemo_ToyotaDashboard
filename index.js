@@ -36,11 +36,13 @@ alexaApp.intent("PlanMyTrip", {
     "slots": [
       {
         "name": "fromCity",
-        "type": "AMAZON.US_CITY"
+        "type": "AMAZON.US_CITY",
+        "value": "Seattle"
       },
       {
         "name": "toCity",
-        "type": "AMAZON.US_CITY"
+        "type": "AMAZON.US_CITY",
+        "value": "Portland"
       },
       {
         "name": "travelDate",
