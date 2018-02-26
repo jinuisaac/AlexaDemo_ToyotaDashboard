@@ -32,10 +32,23 @@ alexaApp.launch(function(request, response) {
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
-alexaApp.intent("nameIntent", {
-    "slots": { "NAME": "LITERAL" },
+alexaApp.intent("PlanMyTrip", {
+    "slots": [
+      {
+        "name": "fromCity",
+        "type": "AMAZON.US_CITY"
+      },
+      {
+        "name": "toCity",
+        "type": "AMAZON.US_CITY"
+      },
+      {
+        "name": "travelDate",
+        "type": "AMAZON.DATE"
+      }
+    ],
     "utterances": [
-      "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
+      "i want to travel from {fromCity} to {toCity} {travelDate}"
     ]
   },
   function(request, response) {
