@@ -58,7 +58,7 @@ alexaApp.intent("PlanMyTrip", {
   }
 );
 
-alexaApp.intent("PlanMyTrip", {
+alexaApp.intent("VerizonNOCDashboard", {
   "slots": [
     {
       "name": "companyName",
