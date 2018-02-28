@@ -27,7 +27,7 @@ alexaApp.express({
 app.set("view engine", "ejs");
 
 alexaApp.launch(function (request, response) {
-  response.say("You launched the app!");
+  response.say("Welcome to Sample Dashboard. I am Hella, a Brillio AI Bot on Alexa Echo.");
 });
 
 //alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
@@ -58,35 +58,85 @@ alexaApp.intent("PlanMyTrip", {
   }
 );
 
-alexaApp.intent("VerizonNOCDashboard", {
+alexaApp.intent("Greeting", {
+  "utterances": [
+    "Hi Hella"
+  ]
+},
+  function (request, response) {
+    response.say("Hi Stephen, How can I help you?");
+  }
+);
+
+alexaApp.intent("PipelineOrder", {
+  "utterances": [
+    "what are the number of pipeline orders we have?"
+  ]
+},
+  function (request, response) {
+    response.say("Stephen, the number of pipeline orders are 200");
+  }
+);
+
+alexaApp.intent("CurrentOrder", {
   "slots": [
-    {
-      "name": "companyName",
-      "type": "AMAZON.Corporation",
-      "value": ["Verizon", "Brillio"]
-    },
-    {
-      "name": "botName",
-      "type": "AMAZON.DE_FIRST_NAME",
-      "value": "Hella"
-    },
     {
       "name": "newDate",
       "type": "AMAZON.DATE"
     }
   ],
   "utterances": [
-    "open {companyName} NOC Dashboard",
-    "Hi {botName}",
-    "what are the number of pipeline orders we have",
-    "what are the number of current orders due for {newDate}",
-    "what are the future orders that are due",
-    "which are the past orders that are due as of {newDate}",
-    "what are the key metrics for the NOC in this month"
+    "what are the number of current orders due for {newDate}?"
   ]
 },
   function (request, response) {
-    response.say("Success!");
+    response.say("The number of current orders due for today are 50");
+  }
+);
+
+alexaApp.intent("FutureOrder", {
+  "utterances": [
+    "what are the future orders that are due?"
+  ]
+},
+  function (request, response) {
+    response.say("The future orders that are due within the next 3 days are 12");
+  }
+);
+
+alexaApp.intent("PastOrder", {
+  "slots": [
+    {
+      "name": "newDate",
+      "type": "AMAZON.DATE"
+    }
+  ],
+  "utterances": [
+    "which are the past orders that are due as of {newDate}?"
+  ]
+},
+  function (request, response) {
+    response.say("The orders that were due before today are 18");
+  }
+);
+
+alexaApp.intent("KeyMetrics", {
+  "utterances": [
+    "what are the key metrics for the sample in this month?"
+  ]
+},
+  function (request, response) {
+    response.say("The average time spent on an order is around 42 min and productivity of the plant is at 60 orders per day which is better than the previous month by 12%.");
+  }
+);
+
+alexaApp.intent("Exit", {
+  "utterances": [
+    "Good bye"
+  ]
+},
+  function (request, response) {
+    response.say("Bye, Have a great day");
   }
 );
 
