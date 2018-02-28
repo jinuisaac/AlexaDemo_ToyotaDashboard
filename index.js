@@ -27,7 +27,9 @@ alexaApp.express({
 app.set("view engine", "ejs");
 
 alexaApp.launch(function (request, response) {
+  request.getSession().set(); 
   response.say("Welcome to Sample Dashboard. I am Hella, a Brillio AI Bot on Alexa Echo.");
+  response.shouldEndSession(false);
 });
 
 //alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
@@ -64,7 +66,9 @@ alexaApp.intent("Greeting", {
   ]
 },
   function (request, response) {
+    request.getSession().set();
     response.say("Hi Stephen, How can I help you?");
+    response.shouldEndSession(false);
   }
 );
 
@@ -74,7 +78,9 @@ alexaApp.intent("PipelineOrder", {
   ]
 },
   function (request, response) {
+    request.getSession().set();
     response.say("Stephen, the number of pipeline orders are 200");
+    response.shouldEndSession(false);
   }
 );
 
@@ -90,7 +96,9 @@ alexaApp.intent("CurrentOrder", {
   ]
 },
   function (request, response) {
+    request.getSession().set();
     response.say("The number of current orders due for today are 50");
+    response.shouldEndSession(false);
   }
 );
 
@@ -100,7 +108,9 @@ alexaApp.intent("FutureOrder", {
   ]
 },
   function (request, response) {
+    request.getSession().set();
     response.say("The future orders that are due within the next 3 days are 12");
+    response.shouldEndSession(false);
   }
 );
 
@@ -116,7 +126,9 @@ alexaApp.intent("PastOrder", {
   ]
 },
   function (request, response) {
+    request.getSession().set();
     response.say("The orders that were due before today are 18");
+    response.shouldEndSession(false);
   }
 );
 
@@ -126,7 +138,9 @@ alexaApp.intent("KeyMetrics", {
   ]
 },
   function (request, response) {
+    request.getSession().set();
     response.say("The average time spent on an order is around 42 min and productivity of the plant is at 60 orders per day which is better than the previous month by 12%.");
+    response.shouldEndSession(false);
   }
 );
 
@@ -136,7 +150,9 @@ alexaApp.intent("Exit", {
   ]
 },
   function (request, response) {
+    request.getSession().set();
     response.say("Bye, Have a great day");
+    response.shouldEndSession(true);
   }
 );
 
