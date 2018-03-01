@@ -34,31 +34,31 @@ alexaApp.launch(function (request, response) {
 
 //alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
-alexaApp.intent("PlanMyTrip", {
-  "slots": [
-    {
-      "name": "fromCity",
-      "type": "AMAZON.US_CITY",
-      "value": "Seattle"
-    },
-    {
-      "name": "toCity",
-      "type": "AMAZON.US_CITY",
-      "value": "Portland"
-    },
-    {
-      "name": "travelDate",
-      "type": "AMAZON.DATE"
-    }
-  ],
-  "utterances": [
-    "i want to travel from {fromCity} to {toCity} {travelDate}"
-  ]
-},
-  function (request, response) {
-    response.say("Success!");
-  }
-);
+// alexaApp.intent("PlanMyTrip", {
+//   "slots": [
+//     {
+//       "name": "fromCity",
+//       "type": "AMAZON.US_CITY",
+//       "value": "Seattle"
+//     },
+//     {
+//       "name": "toCity",
+//       "type": "AMAZON.US_CITY",
+//       "value": "Portland"
+//     },
+//     {
+//       "name": "travelDate",
+//       "type": "AMAZON.DATE"
+//     }
+//   ],
+//   "utterances": [
+//     "i want to travel from {fromCity} to {toCity} {travelDate}"
+//   ]
+// },
+//   function (request, response) {
+//     response.say("Success!");
+//   }
+// );
 
 alexaApp.intent("Greeting", {
   "utterances": [
