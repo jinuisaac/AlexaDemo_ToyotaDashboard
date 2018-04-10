@@ -5,7 +5,7 @@ var PORT = process.env.PORT || 8080;
 var app = express();
 
 // ALWAYS setup the alexa app and attach it to express before anything else.
-var alexaApp = new alexa.app("sample");
+var alexaApp = new alexa.app("lineage");
 
 alexaApp.express({
   expressApp: app,
@@ -28,63 +28,11 @@ app.set("view engine", "ejs");
 
 alexaApp.launch(function (request, response) {
   request.getSession().set(); 
-  response.say("Welcome to Sample Dashboard. I am Hella, a Brillio AI Bot on Alexa Echo.");
+  response.say("Welcome to Pitch dashboard. I am Hella, a Brillio AI Bot on Alexa Echo. How may I help you?");
   response.shouldEndSession(false);
 });
 
-//alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
-
-// alexaApp.intent("PlanMyTrip", {
-//   "slots": [
-//     {
-//       "name": "fromCity",
-//       "type": "AMAZON.US_CITY",
-//       "value": "Seattle"
-//     },
-//     {
-//       "name": "toCity",
-//       "type": "AMAZON.US_CITY",
-//       "value": "Portland"
-//     },
-//     {
-//       "name": "travelDate",
-//       "type": "AMAZON.DATE"
-//     }
-//   ],
-//   "utterances": [
-//     "i want to travel from {fromCity} to {toCity} {travelDate}"
-//   ]
-// },
-//   function (request, response) {
-//     response.say("Success!");
-//   }
-// );
-
-alexaApp.intent("Greeting", {
-  "utterances": [
-    "Hi Hella"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("Hi Stephen, How can I help you?");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("PipelineOrder", {
-  "utterances": [
-    "what are the number of pipeline orders we have?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("Stephen, the number of pipeline orders are 200");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("CurrentOrder", {
+alexaApp.intent("Intro_question", {
   "slots": [
     {
       "name": "newDate",
@@ -92,59 +40,85 @@ alexaApp.intent("CurrentOrder", {
     }
   ],
   "utterances": [
-    "what are the number of current orders due for {newDate}?"
+    "Hi - How is the pitch dashboard looking {newDate}?"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("The number of current orders due for today are 50");
+    response.say("The Dashboard looks mostly clear but for 2 Incidents, One at Kansas City and Second one at Des Moines.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("FutureOrder", {
-  "utterances": [
-    "what are the future orders that are due?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("The future orders that are due within the next 3 days are 12");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("PastOrder", {
+alexaApp.intent("Details_ongoing_incident", {
   "slots": [
     {
-      "name": "newDate",
-      "type": "AMAZON.DATE"
+      "name": "city",
+      "type": "AMAZON.US_CITY"
     }
   ],
   "utterances": [
-    "which are the past orders that are due as of {newDate}?"
+    "Hi Can you please provide me some more details around the ongoing incident at {city} location."
   ]
 },
   function (request, response) {
+    console.log(response);
     request.getSession().set();
-    response.say("The orders that were due before today are 18");
+    response.say("Sure. There is a network outage at Kansas City location Impacting : WMS applications. The Critical P1 L000010 has been raised and Incident Manager Swarn is currently co-ordinating with all the support teams.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("KeyMetrics", {
+alexaApp.intent("Latest_update", {
   "utterances": [
-    "what are the key metrics for the sample in this month?"
+    "What is the latest update?"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("The average time spent on an order is around 42 min and productivity of the plant is at 60 orders per day which is better than the previous month by 12%.");
+    response.say("Network Team to raise high priority tickets with DSR to get 4G functional at the earliest.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("Exit", {
+alexaApp.intent("Escalate", {
+  "utterances": [
+    "Do you need me to escalate this incident or call the incident manager?"
+  ]
+},
+  function (request, response) {
+    request.getSession().set();
+    response.say("NO, i think the incident is under control.");
+    //If Yes => call Swarn.....
+    response.shouldEndSession(false);
+  }
+);
+
+alexaApp.intent("Say_thanks", {
+  "utterances": [
+    "Thanks"
+  ]
+},
+  function (request, response) {
+    request.getSession().set();
+    response.say("You are welcome.");
+    response.shouldEndSession(false);
+  }
+);
+
+alexaApp.intent("Second_incident", {
+  "utterances": [
+    "Hi Can you please read me the second incident?"
+  ]
+},
+  function (request, response) {
+    request.getSession().set();
+    response.say("Sure. L000040 - MPLS, Internet & 4G outage at Des Moines affecting WMS.");
+    response.shouldEndSession(false);
+  }
+);
+
+alexaApp.intent("Hella_greetings_bye", {
   "utterances": [
     "Good bye"
   ]
