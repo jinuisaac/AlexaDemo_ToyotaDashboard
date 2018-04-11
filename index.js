@@ -53,12 +53,12 @@ alexaApp.intent("Intro_question", {
 alexaApp.intent("First_incident", {
   "slots": [
     {
-      "name": "city",
+      "name": "firstCity",
       "type": "AMAZON.AT_CITY"
     }
   ],
   "utterances": [
-    "Can you please provide me more details around {city} Incident?"
+    "Can you please provide me more details around {firstCity} Incident?"
   ]
 },
   function (request, response) {
@@ -72,12 +72,12 @@ alexaApp.intent("First_incident", {
 alexaApp.intent("Incident_manager", {
   "slots": [
     {
-      "name": "city",
+      "name": "firstCity",
       "type": "AMAZON.AT_CITY"
     }
   ],
   "utterances": [
-    "Who is the Incident Manager for this {city} Incident?"
+    "Who is the Incident Manager for this {firstCity} Incident?"
   ]
 },
   function (request, response) {
@@ -150,12 +150,12 @@ alexaApp.intent("Change_implement", {
 alexaApp.intent("Second_incident", {
   "slots": [
     {
-      "name": "city",
+      "name": "secondCity",
       "type": "AMAZON.AT_CITY"
     }
   ],
   "utterances": [
-    "Ok thank you. Can you please provide me more inputs around {city} Incident?"
+    "Ok thank you. Can you please provide me more inputs around {secondCity} Incident?"
   ]
 },
   function (request, response) {
