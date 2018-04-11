@@ -50,7 +50,7 @@ alexaApp.intent("Intro_question", {
   }
 );
 
-alexaApp.intent("Details_firstCity_incident", {
+alexaApp.intent("First_incident", {
   "slots": [
     {
       "name": "city",
