@@ -3,7 +3,7 @@ var alexa = require("alexa-app");
 
 var PORT = process.env.PORT || 8080;
 var app = express();
-var alexaApp = new alexa.app("lineage");
+var alexaApp = new alexa.app("toyota");
 
 alexaApp.express({
   expressApp: app,
@@ -14,213 +14,155 @@ alexaApp.express({
 
 app.set("view engine", "ejs");
 
+//Open Toyota Dashboard for Boston Region
+
 alexaApp.launch(function (request, response) {
   request.getSession().set(); 
-  response.say("Welcome to Pitch dashboard. I am Hella, a Brillio AI Bot on Alexa Echo Dot. How may I help you?");
+  response.say("Opening Toyota Market Share Dashboard for Boston Region. This Dashboard shows month over month comparison between December 2017 and November 2017.");
   response.shouldEndSession(false);
 });
 
-alexaApp.intent("Intro_question", {
+alexaApp.intent("Sales", {
   "slots": [
     {
-      "name": "newDate",
+      "name": "year",
       "type": "AMAZON.DATE"
     }
   ],
   "utterances": [
-    "Hello, how does the Pitch dashboard look {newDate}?"
+    "What are the Sales for PMA Atlantic Toyota in {year}"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("Hello, The Pitch dashboard looks healthy but for 2 Incidents at Kansa City and Des Monies locations.");
+    response.say("PMA Atlantic Toyota 24.8K vehicle sales in 2017. Toyota captured 16.1 percent of the market share.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("First_incident", {
-  "slots": [
-    {
-      "name": "firstCity",
-      "type": "AMAZON.AT_CITY"
-    }
-  ],
+alexaApp.intent("Top_three_cars", {
   "utterances": [
-    "Can you please provide me more details around {firstCity} Incident?"
+    "Show top three Car segments by Industry Sales"
   ]
 },
   function (request, response) {
     console.log(response);
     request.getSession().set();
-    response.say("There is an ongoing incident since 4/19/2017 2:22:15 PM impacting All Warehouse knowledge workers within Kansas City due to MPLS, Internet and 4G outage.");
+    response.say("Top three Car Segments by Industry Sales are Small SUV 10801, Large Pickup 7622, Mid SUV 7142");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("Incident_manager", {
+alexaApp.intent("Declined_segment", {
+  "utterances": [
+    "Show the segment that declined the most for PMA Atlantic Toyota"
+  ]
+},
+  function (request, response) {
+    request.getSession().set();
+    response.say("Segment Entry Subcompact declined the most with 17.7 percent compared to last month for PMA Atlantic Toyota.");
+    response.shouldEndSession(false);
+  }
+);
+
+alexaApp.intent("Top_three_competitors", {
+  "utterances": [
+    "Who are the top three competitors for Toyota in Small SUV Segment"
+  ]
+},
+  function (request, response) {
+    request.getSession().set();
+    response.say("Honda, Jeep and Subaru are the top three competitors for Toyota in Small SUV Segment with 1787, 1626 and 1061 vehicle sales respectively in December 2017. Toyota sold 2088 vehicles in the same time period in SUV Segment.");
+    response.shouldEndSession(false);
+  }
+);
+
+alexaApp.intent("Income_group", {
   "slots": [
     {
-      "name": "firstCity",
-      "type": "AMAZON.AT_CITY"
+      "name": "year",
+      "type": "AMAZON.DATE"
     }
   ],
   "utterances": [
-    "Who is the Incident Manager for this {firstCity} Incident?"
+    "Which income group contributed the most in Small SUV Segment in PMA Atlantic Toyota in {year}"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("Chethan Krishna is the Incident Manger");
+    response.say("People with income between 50k dollars and 75k dollars bought the Small SUV most in PMA Atlantic Toyota in 2017. Toyota captured 25.7 percent market share in this category.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("Latest_update", {
-  "utterances": [
-    "What is the latest update?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("MPLS and Internet outage is going on at the site. Both Service Provider devices are down due to an area wide outage. 4G is not operational and a high priority case has been raised with DSR");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Previous_instance", {
-  "utterances": [
-    "Is there a previous instance of such incident?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("No there are no such instances in the past reported");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Conference_bridge", {
-  "utterances": [
-    "Is the conference Bridge Still Open?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("Yes the bridge is still running at 1 213 296 6290");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Escalate", {
-  "utterances": [
-    "Does this need to be escalated?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("No the team is working towards resolving this and is Expected resolution time is 4:22:15 PM");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Change_implement", {
-  "utterances": [
-    "Was there any recent change implemented at this location?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("There are no details available around changes implemented at this location for last 6 months.");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Second_incident", {
+alexaApp.intent("Gender", {
   "slots": [
     {
-      "name": "secondCity",
-      "type": "AMAZON.AT_CITY"
+      "name": "year",
+      "type": "AMAZON.DATE"
     }
   ],
   "utterances": [
-    "Ok thank you. Can you please provide me more inputs around {secondCity} Incident?"
+    "What is the gender split for Small SUV Segment in PMA Atlantic Toyota in {year}"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("Sure. MPLS, Internet and 4G outage at Des Moines affecting WMS");
+    response.say("Female bought 30.23 percent of Small SUV in PMA Atlantic Toyota in 2017, 6 percent more than the Males. Toyota captured 26.5 percent and 23 percent market share in Female and Male categories.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("Incident_number", {
+alexaApp.intent("Ethnic_group", {
+  "slots": [
+    {
+      "name": "year",
+      "type": "AMAZON.DATE"
+    }
+  ],
   "utterances": [
-    "Can you provide me the Incident Number and impacted users?"
+    "Which ethnic group performed best Small SUV Segment in PMA Atlantic Toyota in {year}"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("The Incident L000010 and is impacting the Complete Warehouse Operations");
+    response.say("Western European ethnic group performed best with 30 percent sales in Small SUV segment in PMA Atlantic Toyota in 2017. Toyota Captured 17.7 percent market share.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("Change_implement", {
+alexaApp.intent("Segment_perform", {
+  "slots": [
+    {
+      "name": "year",
+      "type": "AMAZON.DATE"
+    }
+  ],
   "utterances": [
-    "Was there any recent change implemented at this location?"
+    "Which segment performed well in New Hampshire state in {year}"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("Yes there was a change implemented 2 weeks back on one of the router configurations, which was reported to be a successful change.");
+    response.say("Small SUV performed best with 21152 vehicles in 2017 in New Hampshire State, followed by Large Pickup and Mid SUV with 15854 and 12100 sales respectively.");
     response.shouldEndSession(false);
   }
 );
 
-alexaApp.intent("Next_steps", {
+alexaApp.intent("Zipcode", {
+  "slots": [
+    {
+      "name": "year",
+      "type": "AMAZON.DATE"
+    }
+  ],
   "utterances": [
-    "What are the next steps?"
+    "Which zipcode performed worst in PMA Atlantic Toyota in {year}"
   ]
 },
   function (request, response) {
     request.getSession().set();
-    response.say("Network Team to raise high priority tickets with DSR to get 4G functional at the earliest");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Escalate", {
-  "utterances": [
-    "Does this incident need escalation?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("No, the team is already following up with relevant stakeholders and are receiving the required updates to proceed further");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Other_details", {
-  "utterances": [
-    "Are there any other important details you have for me?"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("Not at this juncture. Thanks.");
-    response.shouldEndSession(false);
-  }
-);
-
-alexaApp.intent("Say_thanks", {
-  "utterances": [
-    "Thanks"
-  ]
-},
-  function (request, response) {
-    request.getSession().set();
-    response.say("You are welcome.");
+    response.say("Zipcode 02128 performed worst with 15779 sales and 11.9 percent Toyota share.");
     response.shouldEndSession(false);
   }
 );
