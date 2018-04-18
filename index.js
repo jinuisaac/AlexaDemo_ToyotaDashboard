@@ -169,12 +169,24 @@ alexaApp.intent("Zipcode", {
 
 alexaApp.intent("Greetings_bye", {
   "utterances": [
-    "Good bye"
+    "Good bye", "Quit", "Thanks", "bye bye", "bye"
   ]
 },
   function (request, response) {
     request.getSession().set();
     response.say("Bye, Have a great day");
+    response.shouldEndSession(true);
+  }
+);
+
+alexaApp.intent("Help", {
+  "utterances": [
+    "help me", "help", "Please Help me", "How can you help me"
+  ]
+},
+  function (request, response) {
+    request.getSession().set();
+    response.say("I am always happy to help you. As of now, I deal with Toyota dashboard assistance. I will become more intelligent in future.");
     response.shouldEndSession(true);
   }
 );
