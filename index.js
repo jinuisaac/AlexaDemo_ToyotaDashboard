@@ -167,7 +167,7 @@ alexaApp.intent("Zipcode", {
   }
 );
 
-alexaApp.intent("Hella_greetings_bye", {
+alexaApp.intent("Greetings_bye", {
   "utterances": [
     "Good bye"
   ]
